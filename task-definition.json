@@ -1,0 +1,36 @@
+{
+    "family": "hello-world-task",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "name": "hello-world",
+        "image": "775484579037.dkr.ecr.ap-south-1.amazonaws.com/hello-world:latest",
+        "cpu": 256,
+        "memory": 512,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 3000,
+            "hostPort": 3000,
+            "protocol": "tcp"
+          }
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/hello-world-task",
+            "awslogs-region": "ap-south-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::775484579037:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::775484579037:role/ecsTaskRole"
+  }
+  
